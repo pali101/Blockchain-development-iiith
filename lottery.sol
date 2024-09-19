@@ -60,9 +60,15 @@ contract Lottery {
             players.length < maxPlayers,
             "Max number of players reached. Try again later"
         );
+
         require(
             _predictedNumber >= 0 && _predictedNumber <= maxInput,
             "Predicted number should be between 0 and maxInput"
+        );
+
+        require(
+            block.timestamp <= endTime,
+            "Cannot buy more tickets. Lottery ended."
         );
 
         // add player to the list of players and store their prediction
